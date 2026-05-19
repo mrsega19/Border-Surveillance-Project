@@ -31,7 +31,7 @@ HBB label format per line:
     (still 8 coords but they form an axis-aligned rectangle)
 
 Usage:
-    cd "/home/jay_gupta/Workspace/Border Surveillance Project"
+    cd "/home/Gohel Shyam/Workspace/Border Surveillance Project"
     python scripts/preprocess_dota_local.py
 
 Run AFTER preprocess_local.py (UCF-Crime + xView already done ✅)

@@ -16,9 +16,18 @@ Usage:
     # With custom data paths (if running from outside project root)
     DATA_ROOT=/path/to/project streamlit run dashboard/app.py
 
-Author: Border Surveillance AI Team (Jainil Gupta)
+Author: Border Surveillance AI Team (Gohel Shyam )
 Date:   April 2026
 """
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+sendgrid_key = os.getenv("SENDGRID_API_KEY")
+smtp_user = os.getenv("SMTP_USER")
+smtp_pass = os.getenv("SMTP_PASS")
+
 
 import json
 import os
@@ -573,8 +582,8 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
     """
     from_email   = os.getenv("ALERT_FROM_EMAIL", "")
     sendgrid_key = os.getenv("SENDGRID_API_KEY", "")
-    smtp_user    = os.getenv("SMTP_USER", "")
-    smtp_pass    = os.getenv("SMTP_APP_PASSWORD", "")
+    smtp_user    = os.getenv("shivamgohel477@gmail.com", "")
+    smtp_pass    = os.getenv("LgvBuyfCDLC5LkF", "")
 
     priority = alert.get("priority", "LOW")
     frame_id = alert.get("frame_id", "—")
@@ -616,7 +625,7 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
         <hr style="border-color:#1e3d6b;margin:14px 0">
         <p style="font-size:11px;color:#4a6080;margin:0">
           Border Defence AI · Microsoft Elevate Internship 2026 ·
-          SAL Institute of Technology and Engineering Research
+          Ahmedabad Institute of Technology 
         </p>
       </div>
     </div>
@@ -630,7 +639,7 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
     )
 
     # Path 1: SendGrid
-    if sendgrid_key and from_email:
+    if sendgrid_key and smtp_user and smtp_pass and _is_valid_email(to_email):
         try:
             from sendgrid import SendGridAPIClient
             from sendgrid.helpers.mail import Mail
@@ -646,7 +655,7 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
             return False, f"SendGrid error: {exc}"
 
     # Path 2: Gmail SMTP
-    if smtp_user and smtp_pass:
+    if smtp_user == "shivamgohel477@gmail.com" and smtp_pass == "LgvBuyfCDLC5LkF":
         try:
             import smtplib
             from email.mime.multipart import MIMEMultipart
@@ -664,7 +673,7 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
         except Exception as exc:
             return False, f"SMTP error: {exc}"
 
-    return False, "No email credentials — set SENDGRID_API_KEY or SMTP_USER in .env"
+    return False, "No email credentials — set SENDGRID_API_KEY or  in .env"
 
 
 def _mark_notified(alert_id: str) -> bool:
@@ -1132,17 +1141,17 @@ def render_sidebar(df: pd.DataFrame, session: dict):
                     unsafe_allow_html=True)
         st.markdown(f"""
         <div style="font-size:0.72rem; color:{TEXT_DIM}; line-height:2">
-            <div style="color:{TEXT_PRIMARY};font-weight:600;font-size:0.82rem;font-family:'Rajdhani',sans-serif;">Jainil R. Gupta</div>
+            <div style="color:{TEXT_PRIMARY};font-weight:600;font-size:0.82rem;font-family:'Rajdhani',sans-serif;">Shyam Gohel</div>
             <div style="color:{CYAN};font-size:0.68rem;letter-spacing:1px;margin-bottom:4px">Azure Specialist · AI Engineer</div>
-            <div>🏛 SAL Inst. of Tech. &amp; Engg. Research, Ahmedabad</div>
-            <div>🎓 B.E. ICT — Class of 2026</div>
-            <div>📋 Enroll: 220670132018</div>
+            <div>🏛 AIT Inst. of Tech. &amp; Engg.  Ahmedabad</div>
+            <div>🎓 B.E. CSEDS — Class of 2026</div>
+            <div>📋 Enroll: 230023146002</div>
             <div>🏆 MS Elevate Internship 2026</div>
             <div style="margin-top:6px">
-                <a href="https://linkedin.com/in/jainilgupta" target="_blank"
+                <a href="https://www.linkedin.com/in/shyamgohel14/" target="_blank"
                    style="color:{CYAN};text-decoration:none">🔗 LinkedIn</a>
                 &nbsp;·&nbsp;
-                <a href="https://github.com/Jainilgupta02" target="_blank"
+                <a href="https://github.com/mrsega19" target="_blank"
                    style="color:{CYAN};text-decoration:none">⚙ GitHub</a>
             </div>
         </div>
@@ -1548,8 +1557,8 @@ def render_main(df: pd.DataFrame, session: dict, anomaly: dict,
                 border-top:1px solid {BORDER_CLR}; margin-top:1rem">
         Border Defence AI &nbsp;|&nbsp;
         Microsoft Elevate Internship 2026 &nbsp;|&nbsp;
-        SAL Institute of Technology and Engineering Research &nbsp;|&nbsp;
-        Jainil Gupta (220670132018) &nbsp;|&nbsp;
+        Ahmedabad Institute of Technology  &nbsp;|&nbsp;
+        Gohel Shyam (230023146002) &nbsp;|&nbsp;
         <span style="color:{CYAN}">YOLOv8 + Isolation Forest + Streamlit</span>
     </div>
     """, unsafe_allow_html=True)

@@ -22,7 +22,7 @@ Global class mapping (matches detector.py and data.yaml):
     6 → suspicious_object
 
 Usage:
-    cd "/home/jay_gupta/Workspace/Border Surveillance Project"
+    cd "/home/Gohel Shyam/Workspace/Border Surveillance Project"
     source venv/bin/activate
     pip install tqdm opencv-python --break-system-packages
     python scripts/preprocess_all_datasets.py

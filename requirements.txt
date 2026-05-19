@@ -16,7 +16,7 @@
 # ── COMPUTER VISION ─────────────────────
 # Pick ONE opencv variant — headless avoids GUI dependencies on servers
 opencv-python-headless>=4.8,<4.10
-Pillow==10.1.0
+Pillow>=10.3.0
 imageio==2.33.0
 
 
@@ -27,7 +27,7 @@ torchvision>=0.17
 
 
 # ── MACHINE LEARNING ────────────────────
-scikit-learn==1.3.2
+scikit-learn>=1.4.0
 scipy==1.11.4
 numpy>=1.26
 pandas==2.1.3
