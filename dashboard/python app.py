@@ -582,8 +582,8 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
     """
     from_email   = os.getenv("ALERT_FROM_EMAIL", "")
     sendgrid_key = os.getenv("SENDGRID_API_KEY", "")
-    smtp_user    = os.getenv("SMTP_USER", "")
-    smtp_pass    = os.getenv("SMTP_PASS", "")
+    smtp_user    = os.getenv("shivamgohel477@gmail.com", "")
+    smtp_pass    = os.getenv("LgvBuyfCDLC5LkF", "")
 
     priority = alert.get("priority", "LOW")
     frame_id = alert.get("frame_id", "—")
@@ -639,7 +639,7 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
     )
 
     # Path 1: SendGrid
-    if sendgrid_key and _is_valid_email(to_email):
+    if sendgrid_key and smtp_user and smtp_pass and _is_valid_email(to_email):
         try:
             from sendgrid import SendGridAPIClient
             from sendgrid.helpers.mail import Mail
@@ -655,7 +655,7 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
             return False, f"SendGrid error: {exc}"
 
     # Path 2: Gmail SMTP
-    if smtp_user and smtp_pass:
+    if smtp_user == "shivamgohel477@gmail.com" and smtp_pass == "LgvBuyfCDLC5LkF":
         try:
             import smtplib
             from email.mime.multipart import MIMEMultipart
@@ -673,7 +673,7 @@ def _send_alert_email(alert: dict, to_email: str) -> tuple[bool, str]:
         except Exception as exc:
             return False, f"SMTP error: {exc}"
 
-    return False, "No email credentials — set SMTP_USER and SMTP_PASS in .env"
+    return False, "No email credentials — set SENDGRID_API_KEY or  in .env"
 
 
 def _mark_notified(alert_id: str) -> bool:
@@ -1756,8 +1756,8 @@ def render_main(df: pd.DataFrame, session: dict, anomaly: dict,
                 border-top:1px solid {BORDER_CLR}; margin-top:1rem">
         Border Defence AI &nbsp;|&nbsp;
         Microsoft Elevate Internship 2026 &nbsp;|&nbsp;
-        AIT Institute of Technology  &nbsp;|&nbsp;
-        Gohel shyam (230023146002) &nbsp;|&nbsp;
+        SAL Institute of Technology and Engineering Research &nbsp;|&nbsp;
+        Jainil Gupta (220670132018) &nbsp;|&nbsp;
         <span style="color:{CYAN}">YOLOv8 + Isolation Forest + Streamlit</span>
     </div>
     """, unsafe_allow_html=True)
